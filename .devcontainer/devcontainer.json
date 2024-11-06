@@ -1,17 +1,38 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-  "name": "Laravel App",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "todo-laravel-v5",  // Laravelアプリケーションのサービス名
-  "workspaceFolder": "/workspace/todo-laravel-v5",
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
-  },
+  "name": "codespaces-laravel",
+  "dockerComposeFile": ["docker-compose.yml"],
+  "workspaceFolder": "/workspace",
+  "service": "app",
+  "shutdownAction": "stopCompose",
   "extensions": [
-    "ms-azuretools.vscode-docker",
     "editorconfig.editorconfig",
+    "ryannaddy.laravel-artisan",
+    "amiralizadeh9480.laravel-extra-intellisense",
+    "stef-k.laravel-goto-controller",
+    "codingyu.laravel-goto-view",
     "mikestead.dotenv",
-    "ms-php.php-cs-fixer"
+    "eg2.tslint",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "CoenraadS.bracket-pair-colorizer"
   ],
-  "postCreateCommand": "composer install && php artisan migrate",
-  "remoteUser": "vscode"
+  "settings": {
+    "#terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "features": {
+    "docker-from-docker": {
+      "version": "latest"
+    }
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [80],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && yarn install && yarn run development",
+  "portsAttributes": {
+    "80": {
+      "label": "HTTP"
+    }
+  },
 }
