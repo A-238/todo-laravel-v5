@@ -1,0 +1,17 @@
+{
+  "name": "Laravel App",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "todo-laravel-v5",  // Laravelアプリケーションのサービス名
+  "workspaceFolder": "/workspace/todo-laravel-v5",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "editorconfig.editorconfig",
+    "mikestead.dotenv",
+    "ms-php.php-cs-fixer"
+  ],
+  "postCreateCommand": "composer install && php artisan migrate",
+  "remoteUser": "vscode"
+}
