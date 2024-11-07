@@ -5,8 +5,7 @@ services:
     volumes:
       - ../:/workspace:cached
     ports:
-      - 80:80
-    init: true
+      - "80:80"
     depends_on:
       - db
     environment:
@@ -20,17 +19,9 @@ services:
     hostname: db
     restart: always
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: laravel
       MYSQL_DATABASE: laravel
       MYSQL_USER: laravel
       MYSQL_PASSWORD: laravel
-  redis:
-    image: redis:6-alpine
-    ports:
-      - 6379:6379
-  mailhog:
-    image: mailhog/mailhog
-    ports:
-      - 8025:8025
