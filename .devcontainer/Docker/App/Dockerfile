@@ -1,4 +1,5 @@
 FROM php:7.4-apache
+WORKDIR /workspace
 
 ADD php.ini /usr/local/etc/php/
 ADD 000-default.conf /etc/apache2/sites-enabled/
